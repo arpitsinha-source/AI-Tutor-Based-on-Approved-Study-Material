@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Log in · StudyMate AI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="auth-page"><a class="brand auth-brand" href="index.html"><span class="brand-mark">S</span> StudyMate
+        <b>AI</b></a>
+    <main class="auth-card"><a class="back-link" href="index.html">← Back to home</a>
+        <h1>Welcome back</h1>
+        <p class="muted">Log in to continue learning.</p>
+        <form id="login-form"><label>Email address<input type="email" id="email" autocomplete="email"
+                    required></label><label>Password<input type="password" id="password" autocomplete="current-password"
+                    minlength="6" required></label>
+            <div class="form-row"><span></span><button class="link-button" type="button" id="forgot">Forgot
+                    password?</button></div><button class="btn btn-primary btn-full" type="submit">Log in</button>
+            <p class="form-status" id="status" aria-live="polite"></p>
+        </form>
+        <p class="auth-switch">New to StudyMate AI? <a href="signup.html">Create an account</a></p>
+    </main>
+    <script type="module" src="js/auth.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>AI Tutor · StudyMate AI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="app-header"><a class="brand" href="dashboard.html"><span class="brand-mark">S</span> StudyMate
+            <b>AI</b></a>
+        <div class="user-actions"><a class="btn btn-quiet" href="dashboard.html">My materials</a><button
+                class="btn btn-quiet" id="logout">Log out</button></div>
+    </header>
+    <main class="chat-layout">
+        <aside class="chat-side"><a class="btn btn-outline btn-full" href="chat.html">＋ New chat</a>
+            <h3>StudyMate AI</h3>
+            <p class="muted">Ask questions based on your processed PDFs.</p>
+            <div class="notice">Answers are grounded in your uploaded documents. If the material does not contain the
+                answer, the tutor will say so.</div>
+        </aside>
+        <section class="chat-main">
+            <div class="chat-title">
+                <div><span class="eyebrow">Your study assistant</span>
+                    <h1>Ask your study material</h1>
+                </div><span class="status-pill">● Ready</span>
+            </div>
+            <div id="messages" class="messages">
+                <div class="welcome-message">
+                    <div class="assistant-avatar">S</div>
+                    <h2>What would you like to understand?</h2>
+                    <p>Ask a question from your uploaded and processed study notes.</p>
+                </div>
+            </div>
+            <form id="chat-form" class="chat-composer"><textarea id="question" rows="1" maxlength="2000"
+                    placeholder="Ask a question about your study material…" required></textarea><button
+                    class="btn btn-primary" id="send" type="submit">Send ↑</button></form>
+            <p id="chat-status" class="form-status"></p>
+        </section>
+    </main>
+    <script type="module" src="js/chat.js"></script>
+</body>
+
+</html>

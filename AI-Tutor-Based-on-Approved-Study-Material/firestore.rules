@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function owns(uid) { return signedIn() && request.auth.uid == uid; }
+
+    match /users/{uid} {
+      allow read: if owns(uid);
+      allow create: if owns(uid)
+        && request.resource.data.uid == uid
+        && request.resource.data.role == "student";
+      allow update: if owns(uid)
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.role == resource.data.role;
+      allow delete: if false;
+    }
+    match /documents/{documentId} {
+      allow read: if signedIn() && resource.data.uid == request.auth.uid;
+      allow create: if signedIn()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.processingStatus == "queued";
+      allow update, delete: if false; // Use trusted Cloud Functions for processing/deletion.
+      match /chunks/{chunkId} {
+        allow read, write: if false; // Only Admin SDK Cloud Functions access chunks.
+      }
+    }
+    match /conversations/{conversationId} {
+      allow read: if signedIn() && resource.data.uid == request.auth.uid;
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if signedIn() && resource.data.uid == request.auth.uid;
+      match /messages/{messageId} {
+        allow read: if signedIn() && resource.data.uid == request.auth.uid;
+        allow write: if false; // Server writes messages.
+      }
+    }
+  }
+}
